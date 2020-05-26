@@ -51,7 +51,7 @@ Creator = Stefan Saran
 
 ---------------------------
 Creation date: 
-May 1st. 2020 -
+May 1st. 2020 - May 5th. 2020
 ---------------------------"""
     m += '\n'
     w = Label(root, text=m, width=120, height=20,
