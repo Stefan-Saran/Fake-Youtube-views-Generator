@@ -91,9 +91,9 @@ def popup_bonus2():
     root.geometry('%dx%d+%d+%d' % (w, h, x, y))
     m = """
 -----------------------------------------
-Entering Minimum 30 seconds\nafter every refresh, youtube \nwill count it as a view\n
+Entering Minimum 30 seconds\nafter every refresh, youtube \nwill count it as a view.\n
 Entering below 30 seconds, youtube\nwill mostly remove fake views.
-Programm needs to be stoped \nand waited, to see the\nupdated views on the video
+Programm needs to be stoped \nand waited, to see the\nupdated views on the video.
 Fake views will need time\nto be updated on youtube video.
 -----------------------------------------
 Only Chrome web \nbrowser supported!
