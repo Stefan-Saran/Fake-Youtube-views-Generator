@@ -1,6 +1,6 @@
 # Fake-Youtube-views-Generator
 
-This is my Third Project, it took me 26 days, 20 min a day. It is very simple what it does but i ran out of ideas so i made this one.
+This is my Third Project, it took me 26 days, 20 min a day. It is very simple what it does. I ran out of ideas so i made this one.
 This is a Desktop application made with tkinter python and also used selenium for browser automating.
 
 You specify a youtube video, it refreshes the site and that will make fake youtube views. You can specify how long should he wait after
