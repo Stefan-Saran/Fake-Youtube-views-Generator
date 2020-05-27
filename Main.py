@@ -13,7 +13,7 @@ import sys
 import psutil
 import os
 import signal
-
+from selenium.common.exceptions import WebDriverException
 
 Generator = tk.Tk()
 Generator.title("Fake Youtube Views Generator")
@@ -92,6 +92,7 @@ Entering Minimum 30 seconds\nafter every refresh, youtube \nwill count it as a v
 Entering below 30 seconds, youtube\nwill mostly remove fake views.
 Programm needs to be stoped \nand waited, to see the\nupdated views on the video.
 Fake views will need time\nto be updated on youtube video.
+0 is the fastest refreshing.
 -----------------------------------------
 Only Chrome web \nbrowser supported!
 -----------------------------------------
@@ -133,7 +134,7 @@ def website():
             update1 = refreshes.get() + 1
             refreshes.set(update1)
             sleep(int(video_duration.get()))
-    except:
+    except WebDriverException:
         error_popup()
 
 
