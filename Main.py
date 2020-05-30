@@ -180,7 +180,6 @@ class Refresh_window(Thread):
     def exit(self):
         try:
             run.refresh_counter.deiconify()
-            Generator.destroy()
             sys.exit()
         except RuntimeError:
             sys.exit()
