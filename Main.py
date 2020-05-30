@@ -125,6 +125,7 @@ def error_popup():
         "Error", "Random error ocurred")
     if error_ocurred:
         Generator.destroy()
+        sys.exit()
 
 
 def website():
@@ -132,7 +133,7 @@ def website():
         browser = webdriver.Chrome(
             executable_path=CHROMEDRIVER_PATH, options=chrome_options)
         for i in itertools.count():
-            browser.get(youtube_entry_font.get())
+            browser.get(youtube_entry.get())
             try:
                 aba = browser.find_element_by_xpath(
                     "//div[@class='ytp-cued-thumbnail-overlay']//button[@class='ytp-large-play-button ytp-button']")
@@ -143,6 +144,7 @@ def website():
             refreshes.set(update1)
             sleep(int(video_duration.get()))
     except WebDriverException:
+        sys.exit()
         browser.close()
         error_popup()
 
@@ -176,6 +178,7 @@ class Refresh_window(Thread):
         try:
             run.refresh_counter.deiconify()
             Generator.destroy()
+            sys.exit()
         except RuntimeError:
             sys.exit()
 
@@ -206,7 +209,7 @@ def running_at_the_same_time():
 
 
 def youtube_in_string():
-    return "youtube" in youtube_entry_font.get()
+    return "youtube" in youtube_entry.get()
 
 
 def number_in_string():
@@ -214,13 +217,13 @@ def number_in_string():
 
 
 def warnings():
-    if len(youtube_entry_font.get()) == 0 and len(video_duration.get()) == 0 or youtube_entry_font.get() == "Insert the YouTube video link here" and video_duration.get() == "seconds after every refresh (max 60)" or youtube_entry_font.get() == "Insert the YouTube video link here" and len(video_duration.get()) == 0 or video_duration.get() == "seconds after every refresh (max 60)" and len(youtube_entry_font.get()) == 0:
+    if len(youtube_entry.get()) == 0 and len(video_duration.get()) == 0 or youtube_entry.get() == "Insert the YouTube video link here" and video_duration.get() == "seconds after every refresh (max 60)" or youtube_entry.get() == "Insert the YouTube video link here" and len(video_duration.get()) == 0 or video_duration.get() == "seconds after every refresh (max 60)" and len(youtube_entry.get()) == 0:
         tk.messagebox.showerror("Error", "Boxes cannot be blank!")
-    elif len(youtube_entry_font.get()) == 0 and len(video_duration.get()) > 0 or youtube_entry_font.get() == "Insert the YouTube video link here" and len(video_duration.get()) > 0:
+    elif len(youtube_entry.get()) == 0 and len(video_duration.get()) > 0 or youtube_entry.get() == "Insert the YouTube video link here" and len(video_duration.get()) > 0:
         tk.messagebox.showinfo("Error", "The link box cannot be empty!")
-    elif len(youtube_entry_font.get()) > 0 and len(video_duration.get()) == 0 or len(youtube_entry_font.get()) > 0 and video_duration.get() == "seconds after every refresh (max 60)":
+    elif len(youtube_entry.get()) > 0 and len(video_duration.get()) == 0 or len(youtube_entry.get()) > 0 and video_duration.get() == "seconds after every refresh (max 60)":
         tk.messagebox.showinfo("Error", "The duration box cannot be empty!")
-    elif len(youtube_entry_font.get()) > 0 and number_in_string() == False:
+    elif len(youtube_entry.get()) > 0 and number_in_string() == False:
         tk.messagebox.showerror("Error", "Only numbers allowed!")
     elif youtube_in_string() == False:
         tk.messagebox.showerror("Error", "The link is not a youtube link")
@@ -235,8 +238,8 @@ def warnings():
 
 
 def delete_youtube_entry_text(add1):
-    if youtube_entry_font.get() == "Insert the YouTube video link here":
-        youtube_entry_font.delete(0, END)
+    if youtube_entry.get() == "Insert the YouTube video link here":
+        youtube_entry.delete(0, END)
     else:
         pass
 
@@ -287,25 +290,25 @@ Generator.configure(bg="#1A1A1A")
 centering_window(500, 300)
 
 youtube_entry_font = ('Verdana', 17)
-youtube_entry_font = tk.Entry(canvas, font=youtube_entry_font, width=28)
-youtube_entry_font.place(rely=0.4, relx=0.5, anchor="center")
-youtube_entry_font.configure(foreground="gray")
+youtube_entry = tk.Entry(canvas, font=youtube_entry_font, width=28)
+youtube_entry.place(rely=0.4, relx=0.5, anchor="center")
+youtube_entry.configure(foreground="gray")
 
 
 video_duration = tk.Entry(canvas, width=35)
 video_duration.place(rely=0.55, relx=0.5, anchor="center")
 video_duration.insert(0, "seconds after every refresh (max 60)")
-youtube_entry_font.insert(0, "Insert the YouTube video link here")
+youtube_entry.insert(0, "Insert the YouTube video link here")
 video_duration.configure(foreground="gray")
 
 
 def entrys_effect(asd):
-    if len(video_duration.get()) == 0 and len(youtube_entry_font.get()) == 0:
-        youtube_entry_font.insert(0, "Insert the YouTube video link here")
+    if len(video_duration.get()) == 0 and len(youtube_entry.get()) == 0:
+        youtube_entry.insert(0, "Insert the YouTube video link here")
         video_duration.insert(0, "seconds after every refresh (max 60)")
         Generator.focus()
-    elif len(youtube_entry_font.get()) == 0:
-        youtube_entry_font.insert(0, "Insert the YouTube video link here")
+    elif len(youtube_entry.get()) == 0:
+        youtube_entry.insert(0, "Insert the YouTube video link here")
         Generator.focus()
     elif len(video_duration.get()) == 0:
         video_duration.insert(0, "seconds after every refresh (max 60)")
@@ -315,7 +318,7 @@ def entrys_effect(asd):
 
 
 video_duration.bind("<Button-1>", delete_video_duration_text)
-youtube_entry_font.bind("<Button-1>", delete_youtube_entry_text)
+youtube_entry.bind("<Button-1>", delete_youtube_entry_text)
 canvas.bind("<Button-1>", entrys_effect)
 
 Generator.resizable(False, False)
