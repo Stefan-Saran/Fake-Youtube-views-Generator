@@ -31,6 +31,7 @@ chrome_options.add_argument("--window-size=%s" % WINDOW_SIZE)
 chrome_options.add_argument("--mute-audio")
 chrome_options.binary_location = CHROME_PATH
 
+
 def Programm_info():
     Popup_info = Toplevel(background="#1A1A1A")
     large_font2 = ('Verdana', 12)
@@ -143,6 +144,8 @@ def website():
             update1 = refreshes.get() + 1
             refreshes.set(update1)
             sleep(int(video_duration.get()))
+    except Exception:
+        pass
     except WebDriverException:
         sys.exit()
         browser.close()
@@ -320,6 +323,11 @@ def entrys_effect(asd):
 video_duration.bind("<Button-1>", delete_video_duration_text)
 youtube_entry.bind("<Button-1>", delete_youtube_entry_text)
 canvas.bind("<Button-1>", entrys_effect)
+about_button.bind("<Button-1>", entrys_effect)
+help_button.bind("<Button-1>", entrys_effect)
+start_button.bind("<Button-1>", entrys_effect)
+option.bind("<Button-1>", entrys_effect)
+
 
 Generator.resizable(False, False)
 Generator.mainloop()
