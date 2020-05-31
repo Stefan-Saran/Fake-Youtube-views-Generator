@@ -1,22 +1,37 @@
-import itertools
-import os
-import signal
-import sys
-import threading
-import time
-import tkinter as tk
-import tkinter.messagebox
-from subprocess import call
-from threading import *
-from time import sleep
-from tkinter import *
-from selenium.webdriver.common.by import By
-import psutil
-import schedule
-from selenium import webdriver
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+modules = ["selenium"]
+
+
+try:
+    import itertools
+    import signal
+    import sys
+    import threading
+    import time
+    import tkinter as tk
+    import tkinter.messagebox
+    from subprocess import call
+    from threading import *
+    from time import sleep
+    from tkinter import *
+    from selenium import webdriver
+    from selenium.common.exceptions import WebDriverException
+    from selenium.webdriver.chrome.options import Options
+    from webdriver_manager.chrome import ChromeDriverManager
+except ImportError:
+    import sys
+    import pip
+    import subprocess
+    module_installation_question = input(
+        "Some modules are missing, do you want to install all required modules for this project? yes or no.: ").lower()
+    if module_installation_question == "yes":
+        for module in modules:
+            subprocess.call(['pip', 'install', module])
+        print("Restart the editor and this project should work...")
+        sys.exit()
+    elif module_installation_question == "no":
+        print("This project won't work if one module is missing...")
+        sys.exit()
+
 
 Generator = tk.Tk()
 Generator.title("Fake Youtube Views Generator")
