@@ -151,9 +151,9 @@ def website():
         for i in itertools.count():
             browser.get(youtube_entry.get())
             try:
-                aba = browser.find_element_by_xpath(
+                play_button = browser.find_element_by_xpath(
                     "//div[@class='ytp-cued-thumbnail-overlay']//button[@class='ytp-large-play-button ytp-button']")
-                aba.click()
+                play_button.click()
             except:
                 pass
             update1 = refreshes.get() + 1
@@ -162,7 +162,6 @@ def website():
     except Exception:
         pass
     except WebDriverException:
-        sys.exit()
         browser.close()
         error_popup()
 
@@ -193,10 +192,11 @@ class Refresh_window(Thread):
         refresh_counter.mainloop()
 
     def exit(self):
-        try:
+        try: 
             run.refresh_counter.deiconify()
             sys.exit()
         except RuntimeError:
+
             sys.exit()
 
 
