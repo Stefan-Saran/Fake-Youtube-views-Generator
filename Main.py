@@ -61,10 +61,13 @@ def Programm_info():
     About_info = """
 |This is Fake Youtube\n views generator|
 ---------------------------
+
 This program refreshes \n a certain video \n link on Youtube and that \n creates fake views on the video.
+
 ---------------------------
 Creator = Stefan Saran
 ---------------------------
+
 ---------------------------
 Creation date: 
 May 1st. 2020 - May 5th. 2020
@@ -105,10 +108,10 @@ def Programm_help():
     x = (screen_width - popup_width)/2
     y = (screen_height - popup_height)/2
     Popup_help.geometry('%dx%d+%d+%d' % (popup_width, popup_height, x, y))
-    Help_info = """
+    Help_info = """\n\n
 -----------------------------------------
 Entering Minimum 30 seconds\nafter every refresh, youtube\n will count it as a view.\n
-Entering below 30 seconds, youtube\nwill mostly remove fake views.
+Entering below 30 seconds,\n youtube will mostly\nremove fake views.
 You can see the updated views by\n going to analytics of the video.
 Fake views will need time\nto be updated on youtube video.
 0 is the fastest refreshing.
@@ -192,7 +195,7 @@ class Refresh_window(Thread):
         refresh_counter.mainloop()
 
     def exit(self):
-        try: 
+        try:
             run.refresh_counter.deiconify()
             sys.exit()
         except RuntimeError:
@@ -209,8 +212,8 @@ class running_website(Thread):
             thread_list = list()
 
             for i in range(speed_integer):
-                t = threading.Thread(target=website)
-                t.start()
+                website_thread = threading.Thread(target=website)
+                website_thread.start()
                 thread_list.append(t)
 
             for thread in thread_list:
@@ -257,6 +260,7 @@ def warnings():
 def delete_youtube_entry_text(add1):
     if youtube_entry.get() == "Insert the YouTube video link here":
         youtube_entry.delete(0, END)
+        youtube_entry.configure(foreground="black")
     else:
         pass
 
@@ -264,6 +268,7 @@ def delete_youtube_entry_text(add1):
 def delete_video_duration_text(add22):
     if video_duration.get() == "seconds after every refresh (max 60)":
         video_duration.delete(0, END)
+        video_duration.configure(foreground="black")
     else:
         pass
 
@@ -311,8 +316,10 @@ youtube_entry = tk.Entry(canvas, font=youtube_entry_font, width=28)
 youtube_entry.place(rely=0.4, relx=0.5, anchor="center")
 youtube_entry.configure(foreground="gray")
 
+youtube_entry_text = "Insert the YouTube video link here"
 
-video_duration = tk.Entry(canvas, width=35)
+video_duration_font = ("Verdana", 11)
+video_duration = tk.Entry(canvas, width=29, font=video_duration_font)
 video_duration.place(rely=0.55, relx=0.5, anchor="center")
 video_duration.insert(0, "seconds after every refresh (max 60)")
 youtube_entry.insert(0, "Insert the YouTube video link here")
@@ -324,12 +331,18 @@ def entrys_effect(asd):
         youtube_entry.insert(0, "Insert the YouTube video link here")
         video_duration.insert(0, "seconds after every refresh (max 60)")
         Generator.focus()
+        youtube_entry.configure(foreground="gray")
+        video_duration.configure(foreground="gray")
     elif len(youtube_entry.get()) == 0:
         youtube_entry.insert(0, "Insert the YouTube video link here")
         Generator.focus()
+        youtube_entry.configure(foreground="gray")
+        video_duration.configure(foreground="gray")
     elif len(video_duration.get()) == 0:
         video_duration.insert(0, "seconds after every refresh (max 60)")
         Generator.focus()
+        youtube_entry.configure(foreground="gray")
+        video_duration.configure(foreground="gray")
     else:
         pass
 
