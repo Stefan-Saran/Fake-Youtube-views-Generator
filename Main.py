@@ -21,16 +21,19 @@ except ImportError:
     import sys
     import pip
     import subprocess
-    module_installation_question = input(
-        "Some modules are missing, do you want to install all required modules for this project? yes or no.: ").lower()
-    if module_installation_question == "yes":
-        for module in modules:
-            subprocess.call(['pip', 'install', module])
-        print("Restart the editor and this project should work...")
-        sys.exit()
-    elif module_installation_question == "no":
-        print("This project won't work if one module is missing...")
-        sys.exit()
+    while True:
+        module_installation_question = input("Some modules are missing, do you want to install all required modules for this project? yes or no.: ").lower()
+        if module_installation_question == "yes":
+            print("Installing required modules...")
+            for module in modules:
+                subprocess.call(['pip', 'install', module])
+            print("Restart the editor or the script and this project should work...")
+            while True:
+                asd = input("")
+        elif module_installation_question == "no":
+            print("This project won't work if one module is missing...")
+        else:
+            print("That is not a valid command...")
 
 
 Generator = tk.Tk()
